@@ -6,19 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family:"Helvetica Neue",Arial,sans-serif;
   background:#f2f2f2;
   color:#111;
 }
 
-/* HEADER */
 header{
   padding:35px 0;
   text-align:center;
@@ -51,7 +46,7 @@ header{
 /* GALERIA */
 .galeria{
   max-width:1300px;
-  margin:0 auto;
+  margin:auto;
   padding:100px 40px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -80,20 +75,32 @@ header{
   color:#555;
 }
 
-.produto button{
-  margin-top:22px;
-  padding:12px 30px;
-  border:1px solid #111;
+/* ADMIN */
+#admin{
+  display:none;
+  position:fixed;
+  top:20px;
+  right:20px;
   background:#111;
   color:#fff;
-  cursor:pointer;
-  letter-spacing:2px;
-  font-size:11px;
+  padding:20px;
+  border-radius:10px;
+  width:260px;
+  z-index:9999;
 }
 
-.produto button:hover{
+#admin input{
+  width:100%;
+  margin-bottom:8px;
+  padding:6px;
+}
+
+#admin button{
+  width:100%;
+  padding:8px;
   background:#fff;
-  color:#111;
+  border:none;
+  cursor:pointer;
 }
 
 /* FOOTER */
@@ -103,7 +110,6 @@ footer{
   padding:50px 20px;
   text-align:center;
   font-size:12px;
-  letter-spacing:1px;
 }
 </style>
 </head>
@@ -118,40 +124,64 @@ footer{
 </section>
 
 <section class="galeria">
-
   <div class="produto">
-    <img src="imagens/camisa2.jpg">
-    <h3>WHEN I PRAY</h3>
-    <p>R$ 90,00</p>
-    <button>COMPRAR</button>
+    <img id="img1">
+    <h3 id="nome1"></h3>
+    <p id="preco1"></p>
   </div>
-
-  <div class="produto">
-    <img src="imagens/camisa2.jpg">
-    <h3>PEACE OVER FEAR</h3>
-    <p>R$ 149,00</p>
-    <button>COMPRAR</button>
-  </div>
-
-  <div class="produto">
-    <img src="imagens/camisa3.jpg">
-    <h3>PRAY</h3>
-    <p>R$ 149,00</p>
-    <button>COMPRAR</button>
-  </div>
-
-  <div class="produto">
-    <img src="imagens/camisa4.jpg">
-    <h3>SHALOM</h3>
-    <p>R$ 149,00</p>
-    <button>COMPRAR</button>
-  </div>
-
 </section>
 
 <footer>
 © 2025 SHALOM — Faith. Identity. Luxury.
 </footer>
+
+<!-- ADMIN -->
+<div id="admin">
+  <strong>ADMIN</strong><br><br>
+  <input id="novoNome" placeholder="Nome">
+  <input id="novoPreco" placeholder="Preço">
+  <input type="file" id="novaImagem">
+  <button onclick="salvar()">Salvar</button>
+</div>
+
+<script>
+/* carregar dados */
+document.getElementById("nome1").innerText =
+  localStorage.getItem("nome1") || "WHEN I PRAY";
+
+document.getElementById("preco1").innerText =
+  localStorage.getItem("preco1") || "R$ 149,00";
+
+const img = localStorage.getItem("img1");
+document.getElementById("img1").src =
+  img || "https://via.placeholder.com/600x750?text=ESTAMPA";
+
+/* ADMIN */
+if(window.location.search.includes("admin")){
+  document.getElementById("admin").style.display="block";
+  alert("Modo ADMIN ativado");
+}
+
+function salvar(){
+  localStorage.setItem("nome1", novoNome.value);
+  localStorage.setItem("preco1", novoPreco.value);
+
+  const file = novaImagem.files[0];
+  if(file){
+    const r = new FileReader();
+    r.onload = () => {
+      localStorage.setItem("img1", r.result);
+      img1.src = r.result;
+    };
+    r.readAsDataURL(file);
+  }
+
+  nome1.innerText = novoNome.value;
+  preco1.innerText = novoPreco.value;
+
+  alert("Salvo com sucesso");
+}
+</script>
 
 </body>
 </html>
