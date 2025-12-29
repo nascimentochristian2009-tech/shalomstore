@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>SHALOM</title>
+<title>Shalom Store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,113 +10,187 @@
 
 body{
   font-family:"Helvetica Neue",Arial,sans-serif;
-  background:#f2f2f2;
+  background:#f1f1ef;
   color:#111;
 }
 
-header{
-  padding:35px 0;
-  text-align:center;
-  font-size:28px;
+/* INTRO */
+#intro{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100vh;
+  background:#0f0f0f;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  animation:fadeOut 1.5s ease forwards;
+  animation-delay:3.5s;
+}
+
+#intro h1{
+  font-size:32px;
   letter-spacing:6px;
-  background:#fff;
+  opacity:0;
+  animation:fadeIn 1.5s ease forwards;
+}
+
+#intro p{
+  margin-top:20px;
+  font-size:13px;
+  letter-spacing:3px;
+  color:#d4af37;
+  opacity:0;
+  animation:fadeIn 1.5s ease forwards;
+  animation-delay:1.2s;
+}
+
+@keyframes fadeIn{to{opacity:1}}
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+
+/* HEADER */
+header{
+  padding:40px 20px;
+  text-align:center;
+  font-size:26px;
+  letter-spacing:6px;
 }
 
 /* HERO */
 .hero{
-  background:#111;
+  background:#0f0f0f;
   color:#fff;
-  padding:120px 20px;
+  padding:130px 20px;
   text-align:center;
 }
 
 .hero h1{
   font-size:38px;
-  letter-spacing:4px;
-  font-weight:500;
+  letter-spacing:5px;
 }
 
 .hero p{
-  margin-top:20px;
-  font-size:14px;
-  letter-spacing:2px;
-  color:#ccc;
+  margin-top:22px;
+  font-size:13px;
+  letter-spacing:3px;
+  color:#d4af37;
 }
 
 /* GALERIA */
 .galeria{
-  max-width:1300px;
+  max-width:1350px;
   margin:auto;
-  padding:100px 40px;
+  padding:120px 40px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:70px;
+  gap:80px;
 }
 
 .produto{
   background:#fff;
-  padding:25px;
+  padding:28px;
   text-align:center;
+  transition:.4s;
 }
 
-.produto img{
-  width:100%;
+.produto:hover{
+  transform:translateY(-8px);
 }
+
+.produto img{width:100%}
 
 .produto h3{
-  margin-top:20px;
-  font-size:16px;
-  letter-spacing:2px;
+  margin-top:26px;
+  font-size:15px;
+  letter-spacing:3px;
 }
 
 .produto p{
-  margin-top:8px;
+  margin-top:10px;
   font-size:14px;
-  color:#555;
+  color:#666;
 }
 
-/* ADMIN */
-#admin{
-  display:none;
-  position:fixed;
-  top:20px;
-  right:20px;
+.produto a{
+  display:inline-block;
+  margin-top:22px;
+  padding:12px 32px;
+  border:1px solid #111;
+  text-decoration:none;
+  color:#111;
+  font-size:11px;
+  letter-spacing:3px;
+  transition:.4s;
+}
+
+.produto a:hover{
   background:#111;
   color:#fff;
-  padding:20px;
-  border-radius:10px;
-  width:260px;
-  z-index:9999;
 }
 
-#admin input{
-  width:100%;
-  margin-bottom:8px;
-  padding:6px;
+/* ESCONDIDOS */
+.oculto{
+  display:none;
 }
 
-#admin button{
-  width:100%;
-  padding:8px;
-  background:#fff;
-  border:none;
+/* BOTÃO VER MAIS */
+.ver-mais{
+  text-align:center;
+  margin-top:-40px;
+}
+
+.ver-mais button{
+  padding:14px 40px;
+  background:none;
+  border:1px solid #111;
+  font-size:12px;
+  letter-spacing:4px;
   cursor:pointer;
+  transition:.4s;
+}
+
+.ver-mais button:hover{
+  background:#111;
+  color:#fff;
 }
 
 /* FOOTER */
 footer{
-  background:#111;
+  background:#0f0f0f;
   color:#aaa;
-  padding:50px 20px;
+  padding:60px 20px;
   text-align:center;
-  font-size:12px;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{font-size:28px}
+  .galeria{
+    padding:70px 25px;
+    grid-template-columns:1fr;
+    gap:50px;
+  }
+  .produto a{
+    width:100%;
+    padding:14px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>SHALOM</header>
+<div id="intro">
+  <h1>SHALOM STORE</h1>
+  <p>MOSTRE SUA IDENTIDADE</p>
+</div>
+
+<header>SHALOM STORE</header>
 
 <section class="hero">
   <h1>MOSTRE SUA IDENTIDADE</h1>
@@ -124,62 +198,61 @@ footer{
 </section>
 
 <section class="galeria">
+
+  <!-- VISÍVEIS -->
   <div class="produto">
-    <img id="img1">
-    <h3 id="nome1"></h3>
-    <p id="preco1"></p>
+    <img src="camisa1.jpg">
+    <h3>WHEN I PRAY</h3>
+    <p>R$ 149,00</p>
+    <a href="https://instagram.com/" target="_blank">PEDIR NO INSTAGRAM</a>
   </div>
+
+  <div class="produto">
+    <img src="camisa2.jpg">
+    <h3>FAITH OVER FEAR</h3>
+    <p>R$ 149,00</p>
+    <a href="https://instagram.com/" target="_blank">PEDIR NO INSTAGRAM</a>
+  </div>
+
+  <div class="produto">
+    <img src="camisa3.jpg">
+    <h3>JESUS SAVES</h3>
+    <p>R$ 149,00</p>
+    <a href="https://instagram.com/" target="_blank">PEDIR NO INSTAGRAM</a>
+  </div>
+
+  <!-- OCULTOS -->
+  <div class="produto oculto">
+    <img src="camisa4.jpg">
+    <h3>GRACE</h3>
+    <p>R$ 149,00</p>
+    <a href="https://instagram.com/" target="_blank">PEDIR NO INSTAGRAM</a>
+  </div>
+
+  <div class="produto oculto">
+    <img src="camisa5.jpg">
+    <h3>WALK BY FAITH</h3>
+    <p>R$ 149,00</p>
+    <a href="https://instagram.com/" target="_blank">PEDIR NO INSTAGRAM</a>
+  </div>
+
 </section>
 
-<footer>
-© 2025 SHALOM — Faith. Identity. Luxury.
-</footer>
-
-<!-- ADMIN -->
-<div id="admin">
-  <strong>ADMIN</strong><br><br>
-  <input id="novoNome" placeholder="Nome">
-  <input id="novoPreco" placeholder="Preço">
-  <input type="file" id="novaImagem">
-  <button onclick="salvar()">Salvar</button>
+<div class="ver-mais">
+  <button onclick="mostrar()">VER MAIS MODELOS</button>
 </div>
 
+<footer>
+© 2025 SHALOM STORE — Fé, identidade e excelência.
+</footer>
+
 <script>
-/* carregar dados */
-document.getElementById("nome1").innerText =
-  localStorage.getItem("nome1") || "WHEN I PRAY";
-
-document.getElementById("preco1").innerText =
-  localStorage.getItem("preco1") || "R$ 149,00";
-
-const img = localStorage.getItem("img1");
-document.getElementById("img1").src =
-  img || "https://via.placeholder.com/600x750?text=ESTAMPA";
-
-/* ADMIN */
-if(window.location.search.includes("admin")){
-  document.getElementById("admin").style.display="block";
-  alert("Modo ADMIN ativado");
-}
-
-function salvar(){
-  localStorage.setItem("nome1", novoNome.value);
-  localStorage.setItem("preco1", novoPreco.value);
-
-  const file = novaImagem.files[0];
-  if(file){
-    const r = new FileReader();
-    r.onload = () => {
-      localStorage.setItem("img1", r.result);
-      img1.src = r.result;
-    };
-    r.readAsDataURL(file);
-  }
-
-  nome1.innerText = novoNome.value;
-  preco1.innerText = novoPreco.value;
-
-  alert("Salvo com sucesso");
+function mostrar(){
+  document.querySelectorAll('.oculto').forEach(e=>{
+    e.style.display="block";
+    e.style.animation="fadeIn 1s ease";
+  });
+  document.querySelector('.ver-mais').style.display="none";
 }
 </script>
 
